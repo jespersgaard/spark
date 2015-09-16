@@ -75,6 +75,7 @@ class Spark
     public static $createSubscriptionsWith;
 
     /**
+<<<<<<< HEAD
      * The callback used to move a user to another plan.
      *
      * @var callable|null
@@ -82,6 +83,8 @@ class Spark
     public static $swapSubscriptionsWith;
 
     /**
+=======
+>>>>>>> Added a method to set custom callbacks when creating stripe subscriptions
      * Indicates if two-factor authentication is supported.
      *
      * @var bool
@@ -392,6 +395,7 @@ class Spark
     }
 
     /**
+<<<<<<< HEAD
      * Set a callback to be used when moving the user to another plan.
      *
      * @param  callable|string  $callback
@@ -403,6 +407,8 @@ class Spark
     }
 
     /**
+=======
+>>>>>>> Added a method to set custom callbacks when creating stripe subscriptions
      * Specify that two-factor authentication should be available.
      *
      * @return void
