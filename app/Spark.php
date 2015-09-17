@@ -644,9 +644,9 @@ class Spark
     public static function isEuropean($european = null)
     {
         if (is_null($european)) {
-            return array_get(static::$invoiceData, 'european', false);
+            return array_get(static::$options, 'european', false);
         }
 
-        static::$invoiceData['european'] = $european;
+        static::$options['european'] = $european;
     }
 }
