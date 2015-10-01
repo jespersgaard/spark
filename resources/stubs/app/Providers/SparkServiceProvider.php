@@ -114,6 +114,26 @@ class SparkServiceProvider extends ServiceProvider
                 ]);
             });
         }
+
+
+
+        /**
+         * Apply the tax rate of the customer to the invoice
+         * when swapping plans.
+         */
+        if (Spark::isEuropean()) {
+            Spark::swapSubscriptionsWith(function (Request $request, $user) {
+                $user->subscription($request->plan)
+                    ->maintainTrial()->prorate()->swap();
+
+                $customer = $user->subscription()->getStripeCustomer();
+
+                Stripe\Invoice::create([
+                    'customer' => $customer->id,
+                    'tax_percent' => $customer->metadata->tax_percent
+                ], $user->getStripeKey())->pay();
+            });
+        }
     }
 
     /**
