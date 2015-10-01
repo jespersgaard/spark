@@ -72,7 +72,7 @@ class SparkServiceProvider extends ServiceProvider
                     'country'  => 'required',
                     'vat_id'   => 'vat_number',
                 ];
-                return $withSubscription ? array_merge($userRules,$addressRules) : $userRules;
+                return $withSubscription ? array_merge($userRules, $addressRules) : $userRules;
             });
         }
 
