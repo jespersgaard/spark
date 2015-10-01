@@ -311,8 +311,8 @@ Vue.component('spark-subscription-register-screen', {
 
             setTimeout(function() {
                 $('.spark-first-field')
-                    .filter(':visible:first')
-                    .focus();
+                        .filter(':visible:first')
+                        .focus();
             }, 100);
         },
 
@@ -353,9 +353,9 @@ Vue.component('spark-subscription-register-screen', {
             }
 
             /*
-             Here we will build the payload to send to Stripe, which will
-             return a token. This token can be used to make charges on
-             the user's credit cards instead of storing the numbers.
+                Here we will build the payload to send to Stripe, which will
+                return a token. This token can be used to make charges on
+                the user's credit cards instead of storing the numbers.
              */
             var payload = {
                 name: this.registerForm.name,
