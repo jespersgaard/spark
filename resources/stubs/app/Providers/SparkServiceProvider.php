@@ -128,7 +128,7 @@ class SparkServiceProvider extends ServiceProvider
 
                 $customer = $user->subscription()->getStripeCustomer();
 
-                Stripe\Invoice::create([
+                \Stripe\Invoice::create([
                     'customer' => $customer->id,
                     'tax_percent' => $customer->metadata->tax_percent
                 ], $user->getStripeKey())->pay();
