@@ -41,7 +41,7 @@ if (count(Spark::plans()) > 0) {
     $router->put('settings/user/card', 'Settings\SubscriptionController@updateCard');
     $router->put('settings/user/vat', 'Settings\SubscriptionController@updateExtraBillingInfo');
     $router->get('settings/user/plan/invoice/{id}', 'Settings\SubscriptionController@downloadInvoice');
-    if (Spark::isInEU()) {
+    if (Spark::basedInEU()) {
         $router->put('settings/user/billing', 'Settings\SubscriptionController@updateBillingAddress');
     }
 }
@@ -84,7 +84,7 @@ if (count(Spark::plans()) > 0) {
     $router->get('spark/api/subscriptions/plans', 'API\SubscriptionController@getPlans');
     $router->get('spark/api/subscriptions/coupon/{code}', 'API\SubscriptionController@getCoupon');
     $router->get('spark/api/subscriptions/user/coupon', 'API\SubscriptionController@getCouponForUser');
-    if (Spark::isInEU()) {
+    if (Spark::basedInEU()) {
         $router->get('spark/api/subscriptions/user/billing', 'API\SubscriptionController@getBillingAddressForUser');
     }
 }

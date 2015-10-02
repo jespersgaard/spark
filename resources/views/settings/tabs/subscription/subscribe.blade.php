@@ -30,7 +30,7 @@
 	</div>
 
 	<!-- Subscription EU address information -->
-	@if (Spark::isInEU())
+	@if (Spark::basedInEU())
 		@include('spark::settings.tabs.subscription.address')
 	@endif
 
@@ -67,7 +67,7 @@
 						<input type="text" class="form-control" name="year" placeholder="YYYY" maxlength="4" data-stripe="exp-year" v-model="cardForm.year">
 					</div>
 				</div>
-				@if (! Spark::isInEU())
+				@if (! Spark::basedInEU())
 					<div class="form-group">
 						<label for="zip" class="col-md-3 control-label">ZIP / Postal Code</label>
 						<div class="col-md-6">
@@ -105,7 +105,7 @@
 	</div>
 </div>
 
-@if (Spark::isInEU())
+@if (Spark::basedInEU())
 	<div class="panel panel-default" v-if=" ! user.stripe_active && ! userIsOnGracePeriod && subscribeForm.plan">
 		<div class="panel-heading">
 			Overview

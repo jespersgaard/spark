@@ -161,7 +161,7 @@ Vue.component('spark-subscription-register-screen', {
          * and Spark is configured to be used within the EU
          */
         initializeVATCalculator: function() {
-            if (Spark.isInEU) {
+            if (Spark.basedInEU) {
                 VATCalculator.init("#subscription-address-form");
             }
         },
@@ -172,7 +172,7 @@ Vue.component('spark-subscription-register-screen', {
          * data-vat="vat-number" input element
          */
         calculateVAT: function() {
-            if (Spark.isInEU) {
+            if (Spark.basedInEU) {
                 var self = this;
                 VATCalculator.calculate(function(result) {
                     self.addressForm.valid_vat_id = result.valid_vat_id;
@@ -366,7 +366,7 @@ Vue.component('spark-subscription-register-screen', {
                 address_line1: this.addressForm.street,
                 address_city: this.addressForm.city,
                 address_country: this.addressForm.country,
-                address_zip: (Spark.isInEU) ? this.addressForm.zip : this.cardForm.zip
+                address_zip: (Spark.basedInEU) ? this.addressForm.zip : this.cardForm.zip
             };
 
             Stripe.card.createToken(payload, function (status, response) {

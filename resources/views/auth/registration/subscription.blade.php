@@ -48,7 +48,7 @@
 			</div>
 
 			<!-- EU address Information -->
-			@if (Spark::isInEU())
+			@if (Spark::basedInEU())
 				<div class="row" v-if=" ! freePlanIsSelected">
 					@include('spark::auth.registration.subscription.address')
 				</div>
@@ -60,7 +60,7 @@
 			</div>
 
 			<!-- EU Payment Overview -->
-			@if (Spark::isInEU())
+			@if (Spark::basedInEU())
 				<div class="row" v-if=" ! freePlanIsSelected">
 					@include('spark::auth.registration.subscription.overview')
 				</div>

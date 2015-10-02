@@ -635,7 +635,7 @@ class Spark
      * @param  bool  $inEU
      * @return bool|null
      */
-    public static function isInEU($inEU = null)
+    public static function basedInEU($inEU = null)
     {
         if (is_null($inEU)) {
             return array_get(static::$options, 'inEU', false);
