@@ -13,7 +13,7 @@ class Install extends Command
      *
      * @var string
      */
-    protected $signature = 'spark:install {--force} {--european}';
+    protected $signature = 'spark:install {--force} {--european-union}';
 
     /**
      * The console command description.
@@ -27,7 +27,7 @@ class Install extends Command
      *
      * @var bool
      */
-    protected $isEuropean = false;
+    protected $isInEU = false;
 
     /**
      * Execute the console command.
@@ -36,8 +36,8 @@ class Install extends Command
      */
     public function handle()
     {
-        if ($this->option('european') || $this->confirm('Would you like to install the european regulation tax-management helper?')) {
-            $this->isEuropean = true;
+        if ($this->option('european-union') || $this->confirm('Would you like to install the EU regulation tax-management helper?')) {
+            $this->isInEU = true;
         }
 
         $this->installNpmPackageConfig();
@@ -159,7 +159,7 @@ class Install extends Command
      */
     protected function installModels()
     {
-        $stubModel = ( $this->isEuropean ) ? 'EuropeanUser' : 'User';
+        $stubModel = ( $this->isInEU) ? 'EuropeanUnionUser' : 'User';
 
         copy(
             SPARK_PATH.'/resources/stubs/app/'.$stubModel.'.php',
@@ -204,7 +204,7 @@ class Install extends Command
             base_path('resources/views/home.blade.php')
         );
 
-        if ($this->isEuropean) {
+        if ($this->isInEU) {
             if (! is_dir('resources/views/vendor/cashier')) {
                 mkdir(base_path('resources/views/vendor/cashier'), 0755, true);
             }
@@ -292,7 +292,7 @@ class Install extends Command
             PHP_EOL.'AUTHY_KEY='.PHP_EOL.PHP_EOL.
             'STRIPE_KEY='.PHP_EOL.
             'STRIPE_SECRET='.PHP_EOL.PHP_EOL.
-            'SPARK_EUROPEAN='.var_export($this->isEuropean,true).PHP_EOL
+            'SPARK_EU='.var_export($this->isInEU,true).PHP_EOL
         );
     }
 

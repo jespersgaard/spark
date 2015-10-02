@@ -630,17 +630,17 @@ class Spark
     }
 
     /**
-     * Determine or set if the application is based in Europe.
+     * Determine or set if the application is based in the EU.
      *
-     * @param  bool  $european
+     * @param  bool  $inEU
      * @return bool|null
      */
-    public static function isEuropean($european = null)
+    public static function isInEU($inEU = null)
     {
-        if (is_null($european)) {
-            return array_get(static::$options, 'european', false);
+        if (is_null($inEU)) {
+            return array_get(static::$options, 'inEU', false);
         }
 
-        static::$options['european'] = $european;
+        static::$options['inEU'] = $inEU;
     }
 }

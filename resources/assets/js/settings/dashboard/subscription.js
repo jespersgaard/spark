@@ -297,7 +297,7 @@ Vue.component('spark-settings-subscription-screen', {
                 this.getCoupon();
             }
             if (this.user.stripe_active) {
-                if (Spark.isEuropean) {
+                if (Spark.isInEU) {
                     this.getBillingAddress();
                 }
             }
@@ -321,7 +321,7 @@ Vue.component('spark-settings-subscription-screen', {
          * and Spark is configured to be used within the EU
          */
         initializeVATCalculator: function() {
-            if (Spark.isEuropean) {
+            if (Spark.isInEU) {
                 VATCalculator.init("#subscription-address-form");
             }
         },
@@ -332,7 +332,7 @@ Vue.component('spark-settings-subscription-screen', {
          * data-vat="vat-number" input element
          */
         calculateVAT: function() {
-            if (Spark.isEuropean) {
+            if (Spark.isInEU) {
                 var self = this;
                 VATCalculator.calculate(function(result) {
                     self.addressForm.valid_vat_id = result.valid_vat_id;
@@ -402,7 +402,7 @@ Vue.component('spark-settings-subscription-screen', {
                 address_line1: this.addressForm.street,
                 address_city: this.addressForm.city,
                 address_country: this.addressForm.country,
-                address_zip: (Spark.isEuropean) ? this.addressForm.zip : this.cardForm.zip
+                address_zip: (Spark.isInEU) ? this.addressForm.zip : this.cardForm.zip
             };
 
             Stripe.card.createToken(payload, function (status, response) {

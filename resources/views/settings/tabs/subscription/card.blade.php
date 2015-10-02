@@ -38,7 +38,7 @@
 				</div>
 			</div>
 
-			@if (! Spark::isEuropean())
+			@if (! Spark::isInEU())
 				<div class="form-group">
 					<label for="zip" class="col-md-3 control-label">ZIP / Postal Code</label>
 					<div class="col-md-6">

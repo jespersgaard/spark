@@ -43,7 +43,7 @@ class SparkServiceProvider extends ServiceProvider
     protected function customizeSpark()
     {
         Spark::configure([
-            'european' => env('SPARK_EUROPEAN'),
+            'inEU' => env('SPARK_EU'),
             'models' => [
                 'teams' => Team::class,
             ]
@@ -57,7 +57,7 @@ class SparkServiceProvider extends ServiceProvider
      */
     protected function customizeRegistration()
     {
-        if (Spark::isEuropean()) {
+        if (Spark::isInEU()) {
             Spark::validateRegistrationsWith(function (Request $request, $withSubscription = false) {
                 $userRules = [
                     'name'     => 'required|max:255',
@@ -93,7 +93,7 @@ class SparkServiceProvider extends ServiceProvider
          * the user's address, IP and company name to stripe.
          * This data will also be used for the invoices.
          */
-        if (Spark::isEuropean()) {
+        if (Spark::isInEU()) {
             Spark::createSubscriptionsWith(function (Request $request, $user, $subscription) {
                 /**
                  * Apply tax rate from the given country.
@@ -121,7 +121,7 @@ class SparkServiceProvider extends ServiceProvider
          * Apply the tax rate of the customer to the invoice
          * when swapping plans.
          */
-        if (Spark::isEuropean()) {
+        if (Spark::isInEU()) {
             Spark::swapSubscriptionsWith(function (Request $request, $user) {
                 $user->subscription($request->plan)
                     ->maintainTrial()->prorate()->swap();

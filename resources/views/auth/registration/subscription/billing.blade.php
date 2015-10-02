@@ -7,7 +7,7 @@
 		<!-- If On Single Plan Application -> Show Price On Billing Heading -->
 		<div class="pull-right">
 			<span v-if="plans.length == 1">
-				@if (! Spark::isEuropean())
+				@if (! Spark::isInEU())
                     (@{{ selectedPlanPrice }} / @{{ selectedPlan.interval | capitalize }})
 				@else
 					($<span class="vat-total">@{{ selectedPlanPrice }}</span> / @{{ selectedPlan.interval | capitalize }})
@@ -45,7 +45,7 @@
 					<input type="text" class="form-control" name="year" placeholder="YYYY" maxlength="4" data-stripe="exp-year" v-model="cardForm.year">
 				</div>
 			</div>
-			@if (! Spark::isEuropean())
+			@if (! Spark::isInEU())
 				<div class="form-group">
 					<label for="number" class="col-sm-4 control-label">ZIP / Postal Code</label>
 					<div class="col-sm-6">
