@@ -205,7 +205,9 @@ class Install extends Command
         );
 
         if ($this->isEuropean) {
-            @mkdir(base_path('resources/views/vendor/cashier/'),0755,true);
+            if (! is_dir('resources/views/vendor/cashier')) {
+                mkdir(base_path('resources/views/vendor/cashier'), 0755, true);
+            }
             copy(
                 SPARK_PATH.'/resources/stubs/resources/views/receipt.blade.php',
                 base_path('resources/views/vendor/cashier/receipt.blade.php')
@@ -238,9 +240,7 @@ class Install extends Command
             mkdir(base_path('resources/assets/js'));
         }
 
-        if ($this->isEuropean) {
-            (new Process('php artisan vendor:publish --tag=vatcalculator-spark', base_path()))->setTimeout(null)->run();
-        }
+        (new Process('php artisan vendor:publish --tag=vatcalculator-spark', base_path()))->setTimeout(null)->run();
 
         if (! is_dir('resources/assets/js/spark')) {
             mkdir(base_path('resources/assets/js/spark'));
