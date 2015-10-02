@@ -205,6 +205,7 @@ class Install extends Command
         );
 
         if ($this->isEuropean) {
+            @mkdir(base_path('resources/views/vendor/cashier/'),0755,true);
             copy(
                 SPARK_PATH.'/resources/stubs/resources/views/receipt.blade.php',
                 base_path('resources/views/vendor/cashier/receipt.blade.php')
