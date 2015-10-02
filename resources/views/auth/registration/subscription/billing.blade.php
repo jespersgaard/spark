@@ -7,7 +7,11 @@
 		<!-- If On Single Plan Application -> Show Price On Billing Heading -->
 		<div class="pull-right">
 			<span v-if="plans.length == 1">
-				(@{{ selectedPlanPrice }} / @{{ selectedPlan.interval | capitalize }})
+				@if (! Spark::isEuropean())
+                    (@{{ selectedPlanPrice }} / @{{ selectedPlan.interval | capitalize }})
+				@else
+					($<span class="vat-total">@{{ selectedPlanPrice }}</span> / @{{ selectedPlan.interval | capitalize }})
+				@endif
 			</span>
 		</div>
 
