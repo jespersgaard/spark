@@ -3,12 +3,12 @@
 namespace Laravel\Spark\Http\Controllers\API;
 
 use Exception;
-use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
 use Laravel\Spark\Spark;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Stripe\Coupon as StripeCoupon;
+use Illuminate\Support\Facades\Auth;
 use Stripe\Customer as StripeCustomer;
 use Laravel\Spark\Subscriptions\Coupon;
 

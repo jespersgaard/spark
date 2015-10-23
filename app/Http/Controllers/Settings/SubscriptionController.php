@@ -147,11 +147,7 @@ class SubscriptionController extends Controller
 
         $customer = Auth::user()->subscription()->getStripeCustomer();
 
-        if ($request->has('company')) {
-            $customer->metadata->company = $request->get('company');
-        } else {
-            $customer->metadata->company = null;
-        }
+        $customer->metadata->company = $request->get('company', null);
         $customer->save();
 
         $card = $customer->sources->retrieve( $customer->default_source );
